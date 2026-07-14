@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+/* ---------------------------------------------------------------------
+   Design tokens
+   Palette: deep postal navy + hi-vis amber (built for outdoor daylight
+   legibility -- the audience reads this on a phone screen in direct sun,
+   not in an office).
+--------------------------------------------------------------------- */
+:root {
+  --ink: #14213d;
+  --ink-soft: #1f3057;
+  --amber: #fca311;
+  --amber-dark: #e08e00;
+  --paper: #f7f6f2;
+  --surface: #ffffff;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --border: #e6e3da;
+  --success: #1f9d55;
+  --success-bg: #eaf7ef;
+  --danger: #d64545;
+  --danger-bg: #fdeceb;
+  --warning: #b9770e;
+  --warning-bg: #fef3e2;
+
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(20, 33, 61, 0.06), 0 2px 8px rgba(20, 33, 61, 0.06);
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------------------
+   App shell / top bar
+--------------------------------------------------------------------- */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  background: var(--ink);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+}
+
+.topbar-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 1px;
+}
+
+/* Signature element: a circular "postmark" stamp badge used as the app
+   mark. A dashed ring evokes a franking stamp without leaning on any
+   real postal service's actual mark. */
+.stamp-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px dashed var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--amber);
+}
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 24px 18px 48px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.page-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------------
+   Cards & surfaces
+--------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.card + .card {
+  margin-top: 12px;
+}
+
+/* ---------------------------------------------------------------------
+   Buttons
+--------------------------------------------------------------------- */
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.05s ease, opacity 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: var(--ink);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--amber-dark);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+.btn-danger:hover:not(:disabled) {
+  background: #b93a3a;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 10px;
+}
+.btn-ghost:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------
+   Forms
+--------------------------------------------------------------------- */
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}
+
+/* ---------------------------------------------------------------------
+   Alerts / status banners
+--------------------------------------------------------------------- */
+.alert {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.alert-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.alert-error {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.alert-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.alert-muted {
+  background: #f1f0ec;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------
+   Dashboard tiles
+--------------------------------------------------------------------- */
+.tile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: left;
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.tile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.tile-label {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.tile-desc {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+/* ---------------------------------------------------------------------
+   Recipient cards
+--------------------------------------------------------------------- */
+.recipient-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  margin-bottom: 10px;
+}
+
+.recipient-card.selected {
+  border-color: var(--amber);
+  background: #fffaf0;
+}
+
+.recipient-checkbox {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--amber);
+  flex-shrink: 0;
+}
+
+.recipient-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.recipient-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 3px 0;
+  line-height: 1.5;
+}
+
+.recipient-note {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text);
+  margin: 3px 0;
+}
+
+.recipient-timestamp {
+  font-size: 11.5px;
+  color: #9aa0ab;
+  margin-top: 4px;
+}
+
+.recipient-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  margin-top: 6px;
+}
+.recipient-link:hover {
+  color: var(--amber-dark);
+}
+
+/* ---------------------------------------------------------------------
+   Misc
+--------------------------------------------------------------------- */
+.center-page {
+  max-width: 380px;
+  margin: 72px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+a {
+  color: var(--ink);
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  background: var(--surface);
+}
+.search-input:focus {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
