@@ -18,7 +18,7 @@ Your `.env` file is pre-filled with the Client ID you created in Google Cloud
 Console:
 
 ```
-VITE_GOOGLE_CLIENT_ID=737813674782-a804vu4jdvef9pejmcfhsie982fmdsac.apps.googleusercontent.com
+VITE_GOOGLE_CLIENT_ID=73781*****-a804vu4jdv*******cfhsie982fmdsac.apps.googleusercontent.com
 ```
 
 ## Run locally
